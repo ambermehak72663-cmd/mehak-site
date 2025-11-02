@@ -3,168 +3,319 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Amber Mehak — Public Administration • Multi-skill Learner</title>
-  <meta name="description" content="Amber Mehak — Public Administration student learning Web Dev, Graphic Design & Cloud Computing. Explore her projects, resume, portfolio and LinkedIn profile."/>
+  <title>Amber Mehak — Public Administration • Web Dev • Design • Cloud</title>
+  <meta name="description" content="Amber Mehak — Public Administration student learning Web Development, Graphic Design and Cloud Computing. Portfolio, resume & contact."/>
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; background: linear-gradient(180deg,#071124,#0b1530,#071124); }
-    .accent { background: linear-gradient(90deg,#ff6b6b,#ff8a00); }
-    .soft-accent { background: linear-gradient(90deg,#7c3aed,#06b6d4); }
-    .glassy { background: rgba(255,255,255,0.06); backdrop-filter: blur(10px); }
-    .fade-up { transform: translateY(10px); opacity: 0; animation: fu .6s ease-out forwards; }
-    @keyframes fu{ to{ transform:translateY(0); opacity:1; } }
+    :root{
+      --bg:#f8fafc; /* very light */
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent1:#fbcfe8; /* pink pastel */
+      --accent2:#c7f9cc; /* green pastel */
+      --accent3:#cde7ff; /* blue pastel */
+    }
+    html,body { height:100%; }
+    body{
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, var(--bg) 0%, #fbfdff 50%);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* animated soft radial gradient (subtle) */
+    .bg-animated {
+      position: relative;
+      overflow: hidden;
+    }
+    .bg-animated::before{
+      content:"";
+      position:absolute;
+      left:-20%;
+      top:-30%;
+      width:140%;
+      height:140%;
+      background: radial-gradient(circle at 10% 20%, var(--accent1) 0%, transparent 20%),
+                  radial-gradient(circle at 80% 50%, var(--accent2) 0%, transparent 18%),
+                  radial-gradient(circle at 50% 90%, var(--accent3) 0%, transparent 18%);
+      opacity:0.45;
+      transform: scale(1);
+      animation: floaty 12s ease-in-out infinite;
+      z-index:0;
+      filter: blur(40px);
+    }
+    @keyframes floaty{
+      0%{ transform:translateY(0) scale(1); opacity:0.45 }
+      50%{ transform:translateY(-6%) scale(1.06); opacity:0.55 }
+      100%{ transform:translateY(0) scale(1); opacity:0.45 }
+    }
+
+    /* cards */
+    .card { background: var(--card); box-shadow: 0 6px 18px rgba(15,23,42,0.06); border-radius: 14px; }
+    .glass-soft { background: rgba(255,255,255,0.6); backdrop-filter: blur(6px); border: 1px solid rgba(15,23,42,0.04); }
+
+    .btn-main { background: linear-gradient(90deg,#ffd6e8,#d1ffd6); color:#05203a; font-weight:600; }
+    .btn-outline { border:1px solid rgba(15,23,42,0.06); background:transparent; color:#05203a; }
+
+    /* small entrance */
+    .reveal { transform: translateY(10px); opacity:0; animation: appear .6s ease-out forwards; }
+    .delay-1 { animation-delay: .06s; } .delay-2{ animation-delay:.12s; } .delay-3{ animation-delay:.18s; }
+    @keyframes appear { to { transform: translateY(0); opacity:1; } }
+
+    /* project image overlay */
+    .proj-img { height: 220px; object-fit: cover; width:100%; border-top-left-radius:14px; border-top-right-radius:14px; }
+
+    /* responsive tune */
+    @media (max-width:640px){
+      .proj-img { height:160px; }
+    }
+
   </style>
 </head>
-<body class="text-slate-100">
+<body class="bg-animated">
 
-  <!-- Header -->
-  <header class="fixed w-full z-30 top-0 glassy border-b border-slate-800/50">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3">
-        <div class="w-11 h-11 rounded-lg soft-accent flex items-center justify-center font-extrabold text-slate-900">AM</div>
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- NAV -->
+    <header class="flex items-center justify-between py-6">
+      <a href="#" class="flex items-center gap-3 z-10">
+        <div class="w-12 h-12 rounded-full card flex items-center justify-center text-xl font-bold">AM</div>
         <div>
-          <div class="font-semibold">Amber Mehak</div>
-          <div class="text-xs text-slate-300 -mt-1">Public Administration • Web Dev • Cloud • Design</div>
+          <div class="font-semibold text-slate-900">Amber Mehak</div>
+          <div class="text-sm text-gray-500">Public Administration • Web Dev • Design • Cloud</div>
         </div>
       </a>
-      <nav class="hidden md:flex gap-6 text-slate-300">
-        <a href="#about" class="hover:text-white">About</a>
-        <a href="#courses" class="hover:text-white">Courses</a>
-        <a href="#projects" class="hover:text-white">Projects</a>
-        <a href="#contact" class="hover:text-white">Contact</a>
+      <nav class="hidden md:flex gap-6 items-center">
+        <a href="#about" class="text-sm text-gray-700 hover:underline">About</a>
+        <a href="#courses" class="text-sm text-gray-700 hover:underline">Courses</a>
+        <a href="#projects" class="text-sm text-gray-700 hover:underline">Projects</a>
+        <a href="#contact" class="text-sm text-gray-700 hover:underline">Contact</a>
+        <a href="https://www.linkedin.com/in/ambermehak?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"
+           class="px-4 py-2 rounded-full btn-outline text-sm ml-2">LinkedIn</a>
       </nav>
-    </div>
-  </header>
 
-  <!-- Hero -->
-  <section id="about" class="pt-28 max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
-    <div class="fade-up">
-      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
-        Hi, I'm <span class="text-transparent bg-clip-text soft-accent">Amber Mehak</span><br>
-        <span class="text-slate-300 font-medium">Public Administration Student</span> learning <b>Web Development</b>, <b>Graphic Design</b>, & <b>Cloud Computing</b>.
-      </h1>
-      <p class="mt-6 text-slate-300">
-        I blend public policy understanding with digital creativity — building meaningful web projects, graphic visuals, and cloud-based solutions.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a href="https://ambermehak.my.canva.site/portfolio-site" target="_blank" class="px-5 py-3 rounded-full accent font-semibold">My Portfolio</a>
-        <a href="https://www.canva.com/design/DAG3CIma1_k/siWGalY3cu5ojjxlcfLInQ/view?utm_content=DAG3CIma1_k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h67d3767df2" 
-           target="_blank" class="px-5 py-3 rounded-full bg-slate-800 hover:bg-slate-700 border border-slate-700">View Resume</a>
-        <a href="https://www.linkedin.com/in/ambermehak?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
-           target="_blank" class="px-5 py-3 rounded-full bg-slate-800/70 hover:bg-slate-700 border border-slate-700 flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 24h4V7h-4v17zM19.5 7c-2.76 0-4.5 1.59-4.5 3.91V24h4v-7.91c0-1.04.67-1.59 1.48-1.59.81 0 1.52.55 1.52 1.59V24h4v-8.91c0-4.57-2.45-6.59-5.5-6.59z"/></svg>
-          LinkedIn
-        </a>
+      <!-- mobile menu button (simple) -->
+      <div class="md:hidden">
+        <button id="mobileToggle" class="p-2 rounded-lg card">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
       </div>
-    </div>
-    <div class="fade-up">
-      <div class="rounded-2xl overflow-hidden shadow-2xl glassy border border-slate-800 p-6">
-        <h3 class="text-xl font-semibold">Current Focus</h3>
-        <ul class="mt-4 text-slate-300 list-disc list-inside">
-          <li>Building responsive websites with HTML, CSS & JS</li>
-          <li>Designing visuals & branding assets in Canva & Figma</li>
-          <li>Learning cloud tools for deployment & collaboration</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Courses -->
-  <section id="courses" class="max-w-6xl mx-auto px-6 py-12 border-t border-slate-800">
-    <h2 class="text-2xl font-bold">Courses & Learning Areas</h2>
-    <div class="grid md:grid-cols-3 gap-6 mt-8">
-      <div class="p-6 rounded-xl glassy border border-slate-800 hover:scale-105 transition">
-        <h3 class="font-semibold text-lg">Web Development</h3>
-        <p class="text-slate-400 mt-2 text-sm">HTML, CSS, JavaScript & Responsive UI Design.</p>
-      </div>
-      <div class="p-6 rounded-xl glassy border border-slate-800 hover:scale-105 transition">
-        <h3 class="font-semibold text-lg">Graphic Design</h3>
-        <p class="text-slate-400 mt-2 text-sm">Posters, Brand Kits, Social Media Visuals using Canva & Figma.</p>
-      </div>
-      <div class="p-6 rounded-xl glassy border border-slate-800 hover:scale-105 transition">
-        <h3 class="font-semibold text-lg">Cloud Computing</h3>
-        <p class="text-slate-400 mt-2 text-sm">Hosting, Storage, Deployments & Cloud Basics.</p>
-      </div>
-    </div>
-  </section>
+    <!-- HERO -->
+    <section class="grid md:grid-cols-2 gap-8 items-center py-8">
+      <div class="z-10">
+        <div class="reveal delay-1">
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Hi — I'm <span style="background:linear-gradient(90deg,#efc8f8,#c6ffd9); -webkit-background-clip:text; background-clip:text; color:transparent">Amber Mehak</span></h1>
+          <p class="mt-4 text-gray-600 max-w-xl">Public Administration student exploring technology and design — building responsive websites, visual campaigns, and cloud-hosted demos to make policy insights accessible and beautiful.</p>
+        </div>
 
-  <!-- Projects -->
-  <section id="projects" class="max-w-6xl mx-auto px-6 py-12 border-t border-slate-800">
-    <h2 class="text-2xl font-bold mb-8">Featured Projects</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      
-      <!-- Civic Dashboard -->
-      <div class="relative group rounded-xl overflow-hidden border border-slate-800 shadow-lg hover:shadow-xl transition-all duration-300">
-        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80" class="object-cover w-full h-56 group-hover:scale-105 transition-transform duration-300" alt="Web Dashboard Project" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-90 group-hover:opacity-100 transition">
-          <div class="absolute bottom-4 left-4 text-white">
-            <h3 class="font-semibold text-lg">Civic Web Dashboard</h3>
-            <p class="text-slate-300 text-sm">Data visualization platform for public reports.</p>
+        <div class="mt-6 flex flex-wrap gap-3 reveal delay-2">
+          <a class="inline-flex items-center gap-3 px-4 py-2 rounded-lg btn-main shadow-sm" href="https://ambermehak.my.canva.site/portfolio-site" target="_blank">
+            View Portfolio
+          </a>
+          <a class="inline-flex items-center gap-3 px-4 py-2 rounded-lg btn-outline" href="https://www.canva.com/design/DAG3CIma1_k/siWGalY3cu5ojjxlcfLInQ/view?utm_content=DAG3CIma1_k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h67d3767df2" target="_blank">
+            View Resume
+          </a>
+          <a class="inline-flex items-center gap-3 px-4 py-2 rounded-lg btn-outline" href="#contact">Contact</a>
+        </div>
+
+        <!-- small badges -->
+        <div class="mt-6 flex gap-3 flex-wrap text-sm">
+          <div class="card px-3 py-2 rounded-lg flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4z"/><path d="M12 14c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4z"/></svg>
+            Public Administration
+          </div>
+          <div class="card px-3 py-2 rounded-lg flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l4 4H8l4-4zM3 13h18v8H3z"/></svg>
+            Courses: Web Dev · Graphic · Cloud
           </div>
         </div>
       </div>
 
-      <!-- Health Awareness -->
-      <div class="relative group rounded-xl overflow-hidden border border-slate-800 shadow-lg hover:shadow-xl transition-all duration-300">
-        <img src="https://images.unsplash.com/photo-1496318447583-f524534e9ce1?w=800&q=60" class="object-cover w-full h-56 group-hover:scale-105 transition-transform duration-300" alt="Health Awareness Poster" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-90 group-hover:opacity-100 transition">
-          <div class="absolute bottom-4 left-4 text-white">
-            <h3 class="font-semibold text-lg">Health Awareness Campaign</h3>
-            <p class="text-slate-300 text-sm">Graphic design promoting public health awareness.</p>
+      <!-- PROFILE CARD -->
+      <div class="card p-6 glass-soft reveal delay-3 relative">
+        <div class="flex items-center gap-4">
+          <!-- Profile image: replace the src below with your exact LinkedIn/Canva image URL if you want -->
+          <img id="profileImg" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80" alt="Amber Mehak" class="w-28 h-28 rounded-full object-cover shadow-md" />
+          <div>
+            <div class="font-semibold text-lg">Amber Mehak</div>
+            <div class="text-sm text-gray-500">Public Administration student • Web & Design Learner</div>
+            <div class="mt-2 flex gap-2">
+              <a href="mailto:ambermehak72663@gmail.com" class="text-sm text-slate-700 hover:underline">ambermehak72663@gmail.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 text-sm text-gray-600">
+          <p>I’m working on civic data visualizations, awareness campaigns and cloud-hosted demos. I love turning policy into accessible digital stories.</p>
+        </div>
+
+        <div class="mt-4 flex gap-2">
+          <a class="px-3 py-2 rounded-md btn-main text-sm" href="#projects">See Projects</a>
+          <a class="px-3 py-2 rounded-md btn-outline text-sm" href="https://www.linkedin.com/in/ambermehak?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES -->
+    <section id="courses" class="mt-8">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-semibold">Courses & Learning Paths</h2>
+        <div class="text-sm text-gray-500">Short structured mini-paths</div>
+      </div>
+
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Web Dev -->
+        <article class="card p-5 rounded-lg reveal">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background:linear-gradient(90deg,#cde7ff,#dbeafe)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v2H4zm0 6h16v2H4zm0 6h16v2H4z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold">Web Development</h3>
+              <p class="text-sm text-gray-600 mt-1">HTML · CSS · JavaScript · Responsive & small web apps</p>
+            </div>
+          </div>
+          <div class="mt-4 flex gap-2 text-xs">
+            <span class="px-2 py-1 bg-gray-100 rounded-md">Projects</span>
+            <span class="px-2 py-1 bg-gray-100 rounded-md">Portfolio</span>
+          </div>
+        </article>
+
+        <!-- Graphic -->
+        <article class="card p-5 rounded-lg reveal delay-1">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background:linear-gradient(90deg,#ffd6e8,#fde68a)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900" viewBox="0 0 24 24" fill="currentColor"><path d="M2 7h20v10H2z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold">Graphic Design</h3>
+              <p class="text-sm text-gray-600 mt-1">Visuals, posters, brand kits — Canva & Figma workflows</p>
+            </div>
+          </div>
+          <div class="mt-4 flex gap-2 text-xs">
+            <span class="px-2 py-1 bg-gray-100 rounded-md">Visuals</span>
+            <span class="px-2 py-1 bg-gray-100 rounded-md">UI Kits</span>
+          </div>
+        </article>
+
+        <!-- Cloud -->
+        <article class="card p-5 rounded-lg reveal delay-2">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background:linear-gradient(90deg,#d1ffd6,#c7f9cc)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900" viewBox="0 0 24 24" fill="currentColor"><path d="M20 17.6A4.4 4.4 0 0015.6 13H7a4 4 0 010-8c1.7 0 3 1.1 3.6 2.6A6 6 0 0120 7a4 4 0 010 10.6z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold">Cloud Computing</h3>
+              <p class="text-sm text-gray-600 mt-1">Hosting, storage, static site deployments & simple CI/CD</p>
+            </div>
+          </div>
+          <div class="mt-4 flex gap-2 text-xs">
+            <span class="px-2 py-1 bg-gray-100 rounded-md">Deploy</span>
+            <span class="px-2 py-1 bg-gray-100 rounded-md">Cert Prep</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="mt-10">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-semibold">Selected Projects</h2>
+        <div class="text-sm text-gray-500">Showcase • Visuals • Cloud</div>
+      </div>
+
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project 1: Civic Dashboard -->
+        <div class="card rounded-lg overflow-hidden reveal">
+          <img class="proj-img" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1400&q=80" alt="Civic Dashboard">
+          <div class="p-4">
+            <h3 class="font-semibold">Civic Web Dashboard</h3>
+            <p class="text-sm text-gray-600 mt-1">Interactive charts & indicators to present city metrics in an accessible way.</p>
+            <div class="mt-3 flex gap-2">
+              <a class="px-3 py-1 rounded-md text-sm btn-main" href="#" role="button">Live demo</a>
+              <a class="px-3 py-1 rounded-md text-sm btn-outline" href="#" role="button">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Health Awareness -->
+        <div class="card rounded-lg overflow-hidden reveal delay-1">
+          <img class="proj-img" src="https://images.unsplash.com/photo-1496318447583-f524534e9ce1?w=1400&q=80" alt="Health Poster">
+          <div class="p-4">
+            <h3 class="font-semibold">Health Awareness Campaign</h3>
+            <p class="text-sm text-gray-600 mt-1">Poster series designed to boost public vaccination awareness and clarity.</p>
+            <div class="mt-3 flex gap-2">
+              <a class="px-3 py-1 rounded-md text-sm btn-main" href="#" role="button">Gallery</a>
+              <a class="px-3 py-1 rounded-md text-sm btn-outline" href="#" role="button">Download</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Cloud Hosting (coding pic) -->
+        <div class="card rounded-lg overflow-hidden reveal delay-2">
+          <!-- coding workspace image (the "coding" pic you wanted) -->
+          <img class="proj-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&q=80" alt="Coding Workspace">
+          <div class="p-4">
+            <h3 class="font-semibold">Cloud Hosting Demo</h3>
+            <p class="text-sm text-gray-600 mt-1">A static site deployed and served via a simple cloud storage + CDN demo — includes build & deploy notes.</p>
+            <div class="mt-3 flex gap-2">
+              <a class="px-3 py-1 rounded-md text-sm btn-main" href="#" role="button">View Setup</a>
+              <a class="px-3 py-1 rounded-md text-sm btn-outline" href="#" role="button">View Code</a>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Cloud Hosting Demo (fixed coding pic) -->
-      <div class="relative group rounded-xl overflow-hidden border border-slate-800 shadow-lg hover:shadow-xl transition-all duration-300">
-        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80" class="object-cover w-full h-56 group-hover:scale-105 transition-transform duration-300" alt="Cloud Hosting Demo" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-90 group-hover:opacity-100 transition">
-          <div class="absolute bottom-4 left-4 text-white">
-            <h3 class="font-semibold text-lg">Cloud Hosting Demo</h3>
-            <p class="text-slate-300 text-sm">Static website deployment using cloud services.</p>
+    <!-- CONTACT -->
+    <section id="contact" class="mt-10 mb-16">
+      <div class="max-w-2xl mx-auto card p-6 rounded-lg reveal">
+        <h3 class="text-xl font-semibold">Contact & Collaboration</h3>
+        <p class="text-sm text-gray-600 mt-2">Want to collaborate, ask about a project or just say hi? Send a message and I will get back to you.</p>
+
+        <form onsubmit="handleContact(event)" class="mt-4 grid gap-3">
+          <input id="cname" class="p-3 rounded-md border border-gray-100" placeholder="Your name" required />
+          <input id="cemail" type="email" class="p-3 rounded-md border border-gray-100" placeholder="Email" required />
+          <textarea id="cmsg" rows="5" class="p-3 rounded-md border border-gray-100" placeholder="Message..." required></textarea>
+          <div class="flex items-center gap-3">
+            <button class="px-4 py-2 rounded-md btn-main">Send message</button>
+            <a class="text-sm text-gray-500" href="https://www.canva.com/design/DAG3CIma1_k/siWGalY3cu5ojjxlcfLInQ/view?utm_content=DAG3CIma1_k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h67d3767df2" target="_blank">View Resume</a>
+            <span class="ml-auto text-sm text-gray-500">📧 <a href="mailto:ambermehak72663@gmail.com" class="hover:underline">ambermehak72663@gmail.com</a></span>
           </div>
-        </div>
+        </form>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- FOOTER -->
+    <footer class="py-8 text-center text-sm text-gray-500">
+      © <span id="yr"></span> Amber Mehak — Public Administration • Web Dev • Design • Cloud
+    </footer>
 
-  <!-- Contact -->
-  <section id="contact" class="max-w-4xl mx-auto px-6 py-12 border-t border-slate-800 text-center">
-    <h2 class="text-2xl font-bold mb-4">Contact & Collaboration</h2>
-    <p class="text-slate-300 mb-6">Interested in projects, design, or collaboration? Send me a message below 👇</p>
-    <form class="grid gap-4 max-w-md mx-auto" onsubmit="sendEmail(event)">
-      <input id="name" required placeholder="Your Name" class="p-3 rounded bg-slate-800/40" />
-      <input id="email" type="email" required placeholder="Your Email" class="p-3 rounded bg-slate-800/40" />
-      <textarea id="message" rows="5" placeholder="Your Message..." class="p-3 rounded bg-slate-800/40"></textarea>
-      <button type="submit" class="px-6 py-3 rounded-full accent font-semibold text-white">Send Message</button>
-    </form>
-    <p class="text-slate-400 text-sm mt-4">
-      📧 Email: <a href="mailto:ambermehak72663@gmail.com" class="text-indigo-400 hover:underline">ambermehak72663@gmail.com</a>
-    </p>
-    <p class="text-slate-400 text-sm mt-2">
-      💼 LinkedIn: <a href="https://www.linkedin.com/in/ambermehak?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
-      target="_blank" class="text-indigo-400 hover:underline">linkedin.com/in/ambermehak</a>
-    </p>
-  </section>
+  </div>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-800 py-6 text-center text-slate-400 text-sm">
-    © <span id="year"></span> Amber Mehak — Public Administration • Design, Web & Cloud Enthusiast.
-  </footer>
-
+  <!-- Mobile nav simple toggle -->
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    function sendEmail(e){
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("message").value;
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-      window.location.href = `mailto:ambermehak72663@gmail.com?subject=Message from ${name}&body=${body}`;
-    }
-  </script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    mobileToggle?.addEventListener('click', () => {
+      alert('For mobile menu: use the desktop nav or I can add a mobile drawer if you want.');
+    });
 
+    // Contact form opens mailto (simple fallback)
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('cname').value.trim();
+      const email = document.getElementById('cemail').value.trim();
+      const msg = document.getElementById('cmsg').value.trim();
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+      window.location.href = `mailto:ambermehak72663@gmail.com?subject=${encodeURIComponent('Message from ' + name)}&body=${body}`;
+    }
+
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
